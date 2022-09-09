@@ -1,3 +1,5 @@
 <resources>
     <string name="app_name">HiringList</string>
+    <string name="app_location">com.fetchreward.hiring</string>
+    <string name="base_url">https://fetch-hiring.s3.amazonaws.com/hiring.json</string>
 </resources>
