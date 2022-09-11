@@ -1,11 +1,18 @@
 <resources>
-    <string name="app_name">HiringList</string>
+    <!--    GENERAL     -->
+    <string name="app_name">Hiring List</string>
     <string name="app_location">com.fetchreward.hiring</string>
     <string name="base_url">https://fetch-hiring.s3.amazonaws.com/hiring.json</string>
 
+    <!--    LIST FRAGMENT     -->
     <string name="id">ID : %1$s</string>
     <string name="listId">List ID : %1$s</string>
     <string name="name">Name : %1$s</string>
     <string name="onClickToast">ID : %1$s, List ID : %2$s, Name : %3$s</string>
     <string name="on_error_list">Error : \u0020</string>
+
+    <!--    MENU ITEM     -->
+    <string name="search">Search</string>
+    <string name="setting">Setting</string>
+
 </resources>

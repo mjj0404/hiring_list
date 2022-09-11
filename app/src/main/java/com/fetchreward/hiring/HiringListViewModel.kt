@@ -1,10 +1,7 @@
 package com.fetchreward.hiring
 
-import android.content.res.Resources
-import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
-import com.fetchreward.hiring.api.RetrofitService
 
 import com.fetchreward.hiring.model.HiringItem
 import kotlinx.coroutines.*

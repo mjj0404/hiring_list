@@ -1,7 +1,6 @@
 package com.fetchreward.hiring
 
 import android.view.LayoutInflater
-import android.view.View
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
 import com.fetchreward.hiring.databinding.ItemHiringBinding
@@ -11,6 +10,7 @@ class HiringListAdapter(private val clickedItem: (HiringItem) -> Unit):
     RecyclerView.Adapter<HiringListAdapter.HiringViewHolder>() {
 
     private var hiringList: List<HiringItem> = emptyList()
+    private var filteredHiringList: List<HiringItem> = emptyList()
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): HiringViewHolder {
         val binding = ItemHiringBinding.inflate(LayoutInflater.from(parent.context), parent, false)
@@ -18,15 +18,24 @@ class HiringListAdapter(private val clickedItem: (HiringItem) -> Unit):
     }
 
     override fun onBindViewHolder(holder: HiringViewHolder, position: Int) {
-        holder.bind(hiringList[position])
+        holder.bind(filteredHiringList[position])
     }
 
     override fun getItemCount(): Int {
-        return hiringList.size
+        return filteredHiringList.size
     }
 
     fun setHiringList(list: List<HiringItem> ) {
         hiringList = list
+        filteredHiringList = list
+        notifyDataSetChanged()
+    }
+
+    fun setSearchFilter(text: String) {
+        if (!text.isNullOrBlank())
+            filteredHiringList = hiringList.filter { it.name.contains(text) }
+        else
+            filteredHiringList = hiringList
         notifyDataSetChanged()
     }
 

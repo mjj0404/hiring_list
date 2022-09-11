@@ -1,16 +1,13 @@
 package com.fetchreward.hiring
 
 import android.os.Bundle
-import android.view.LayoutInflater
-import android.view.View
-import android.view.ViewGroup
-import android.widget.LinearLayout
-import android.widget.TextView
+import android.view.*
+import android.widget.SearchView
 import android.widget.Toast
+import androidx.core.view.MenuProvider
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.ViewModelProvider
 import androidx.recyclerview.widget.LinearLayoutManager
-import androidx.recyclerview.widget.RecyclerView
 import com.fetchreward.hiring.databinding.FragmentMainBinding
 import com.fetchreward.hiring.model.HiringItem
 
@@ -66,6 +63,30 @@ class HiringListFragment : Fragment() {
             }
         }
         viewModel.fetchItems()
+
+        requireActivity().addMenuProvider(object: MenuProvider {
+            override fun onCreateMenu(menu: Menu, menuInflater: MenuInflater) {
+                menuInflater.inflate(R.menu.menu_fragment_main, menu)
+                val searchItem = menu.findItem(R.id.menu_item_search)
+                val searchView: SearchView = searchItem.actionView as SearchView
+                searchView.setOnQueryTextListener(object: SearchView.OnQueryTextListener {
+                    override fun onQueryTextChange(p0: String?): Boolean {
+                        if (p0.isNullOrBlank())
+                            adapter.setSearchFilter("")
+                        else
+                            adapter.setSearchFilter(p0)
+                        return false
+                    }
+                    override fun onQueryTextSubmit(p0: String?): Boolean {
+                        return false
+                    }
+                })
+            }
+
+            override fun onMenuItemSelected(menuItem: MenuItem): Boolean {
+                return false
+            }
+        })
     }
 
     override fun onDestroy() {
