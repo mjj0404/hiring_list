@@ -9,7 +9,7 @@ class PreferenceManager() {
 
     constructor(context: Context) : this() {
         context.getSharedPreferences(
-            Resources.getSystem().getString(R.string.app_location),
+            Constant.PACKAGE_NAME,
             Context.MODE_PRIVATE)
     }
 

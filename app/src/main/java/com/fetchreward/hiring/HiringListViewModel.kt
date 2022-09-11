@@ -1,13 +1,38 @@
 package com.fetchreward.hiring
 
+import android.content.res.Resources
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
+import com.fetchreward.hiring.api.RetrofitService
 
-class HiringListViewModel : ViewModel() {
+import com.fetchreward.hiring.model.HiringItem
+import kotlinx.coroutines.*
 
-    private val _text = MutableLiveData<String>().apply {
-        value = "This is home Fragment"
+
+class HiringListViewModel() : ViewModel() {
+
+    val hiringItemList = MutableLiveData<List<HiringItem>>()
+    val hiringItemListFailed = MutableLiveData<Boolean>()
+
+    private val repository: HiringListRepository = HiringListRepository()
+
+    fun fetchItems() {
+        CoroutineScope(Dispatchers.IO).launch {
+            val list = repository.fetchHiringItems()
+            withContext(Dispatchers.Main) {
+                if (list.isNotEmpty()) {
+                    hiringItemListFailed.value = false
+                    hiringItemList.postValue(list)
+                }
+                else {
+                    onError()
+                }
+            }
+        }
     }
-    val text: LiveData<String> = _text
+
+    private fun onError() {
+        hiringItemListFailed.value = true
+    }
 }
