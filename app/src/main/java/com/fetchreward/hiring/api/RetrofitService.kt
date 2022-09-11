@@ -1,8 +1,5 @@
 package com.fetchreward.hiring.api
 
-import android.content.res.Resources
-import android.util.Log
-import com.fetchreward.hiring.R
 import com.fetchreward.hiring.model.HiringItem
 import com.fetchreward.hiring.utility.Constant
 import retrofit2.Response
@@ -20,7 +17,6 @@ interface RetrofitService {
 
         fun getInstance(): RetrofitService {
             if (retrofitInstance == null) {
-                Log.d("TAG", "getInstance: " + Constant.BASE_URL)
                 val retrofit: Retrofit = Retrofit.Builder()
                     .baseUrl(Constant.BASE_URL)
                     .addConverterFactory(GsonConverterFactory.create())
