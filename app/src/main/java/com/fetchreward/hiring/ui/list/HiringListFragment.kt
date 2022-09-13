@@ -1,35 +1,32 @@
 package com.fetchreward.hiring.ui.list
 
 import android.os.Bundle
+import android.os.SystemClock
+import android.util.Log
 import android.view.*
 import android.widget.SearchView
 import android.widget.Toast
 import androidx.core.view.MenuProvider
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.ViewModelProvider
+import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.LinearLayoutManager
-import com.fetchreward.hiring.HiringListViewModel
 import com.fetchreward.hiring.R
 import com.fetchreward.hiring.databinding.FragmentMainBinding
 import com.fetchreward.hiring.model.HiringItem
-import com.fetchreward.hiring.ui.setting.ThemeSelectionFragment
 
 class HiringListFragment : Fragment() {
 
-    private var _binding: FragmentMainBinding? = null
-
-    private val binding get() = _binding!!
-
-    companion object {
-        fun newInstance() = HiringListFragment()
-    }
+    private lateinit var binding: FragmentMainBinding
 
     private lateinit var viewModel: HiringListViewModel
+
+    private lateinit var themeMenuItem: MenuItem
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?): View {
-        _binding = FragmentMainBinding.inflate(inflater, container, false);
+        binding = FragmentMainBinding.inflate(inflater, container, false)
         viewModel = ViewModelProvider(this)[HiringListViewModel::class.java]
         return binding.root
     }
@@ -70,7 +67,9 @@ class HiringListFragment : Fragment() {
 
         requireActivity().addMenuProvider(object: MenuProvider {
             override fun onCreateMenu(menu: Menu, menuInflater: MenuInflater) {
+                menu.clear()
                 menuInflater.inflate(R.menu.menu_fragment_main, menu)
+                themeMenuItem = menu.findItem(R.id.menu_item_theme)
                 val searchItem = menu.findItem(R.id.menu_item_search)
                 val searchView: SearchView = searchItem.actionView as SearchView
                 searchView.setOnQueryTextListener(object: SearchView.OnQueryTextListener {
@@ -88,18 +87,16 @@ class HiringListFragment : Fragment() {
             }
 
             override fun onMenuItemSelected(menuItem: MenuItem): Boolean {
-                if (menuItem.itemId == R.id.menu_item_theme) {
-                    requireActivity().supportFragmentManager.beginTransaction()
-                        .replace(R.id.container, ThemeSelectionFragment.newInstance())
-                        .commitNow()
+                Log.d("TAG", "onMenuItemSelected: " + SystemClock.currentThreadTimeMillis())
+                themeMenuItem.isEnabled = true
+                if (menuItem.itemId == R.id.menu_item_theme && themeMenuItem.isEnabled) {
+                    themeMenuItem.isEnabled = false
+                    val action = HiringListFragmentDirections.actionNavFragmentMainToNavFragmentSetting()
+                    findNavController().navigate(action)
+                    return true
                 }
                 return false
             }
         })
-    }
-
-    override fun onDestroy() {
-        super.onDestroy()
-        _binding = null
     }
 }
