@@ -34,5 +34,5 @@ implementation 'androidx.navigation:navigation-fragment-ktx:2.5.2'
 implementation 'androidx.navigation:navigation-ui-ktx:2.5.2'
 ```
 ## Additional features
-SearchView and text query filter in Adapter class
+SearchView and text query filter in Adapter class</br>
 Icons and Themes
