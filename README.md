@@ -1,9 +1,9 @@
-## Hiring List for FetchRewards
+# Hiring List for FetchRewards
 
 Fetch dummy hiring list received from FetchRewards to RecyclerView
 
 
-# Structure
+## Structure
 ```
 app<br/>
 ├── api<br/>
@@ -24,7 +24,7 @@ app<br/>
 │       └── PreferenceManager<br/>
 └── MainActivity<br/>
 ```
-# Components/Additional Libraries used
+## Components/Additional Libraries used
 ```
 implementation 'com.squareup.retrofit2:converter-gson:2.9.0'
 implementation 'com.squareup.retrofit2:retrofit:2.9.0'
@@ -33,3 +33,6 @@ implementation 'androidx.core:core-splashscreen:1.0.0'
 implementation 'androidx.navigation:navigation-fragment-ktx:2.5.2'
 implementation 'androidx.navigation:navigation-ui-ktx:2.5.2'
 ```
+## Additional features
+SearchView and text query filter in Adapter class
+Icons and Themes
