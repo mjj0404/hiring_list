@@ -13,12 +13,14 @@
 
     <!--    MENU ITEM     -->
     <string name="search">Search</string>
+    <string name="setting">Setting</string>
 
     <!--    THEME SELECTION     -->
     <string name="theme">Theme</string>
     <string name="theme_default">System Default</string>
     <string name="theme_light">Light</string>
     <string name="theme_dark">Dark</string>
+
 
 
 </resources>

@@ -7,12 +7,13 @@
         android:icon="@drawable/ic_baseline_search_24"
         android:title="@string/search"
         app:actionViewClass="android.widget.SearchView"
-        app:showAsAction="always" />
+        app:showAsAction="ifRoom" />
 
     <item
         android:id="@+id/menu_item_theme"
-        android:icon="@drawable/ic_select_theme"
+        android:icon="@drawable/ic_settings_24"
         android:title="@string/theme"
-        app:showAsAction="always" />
+        android:checkable="true"
+        app:showAsAction="ifRoom" />
 
 </menu>

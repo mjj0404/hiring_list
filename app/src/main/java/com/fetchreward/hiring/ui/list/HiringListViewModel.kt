@@ -1,9 +1,8 @@
-package com.fetchreward.hiring
+package com.fetchreward.hiring.ui.list
 
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import com.fetchreward.hiring.model.HiringItem
-import com.fetchreward.hiring.ui.list.HiringListRepository
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
