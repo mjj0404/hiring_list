@@ -7,9 +7,11 @@
     xmlns:app="http://schemas.android.com/apk/res-auto">
 
     <androidx.cardview.widget.CardView
+        android:id="@+id/item_card_view"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         app:cardCornerRadius="5dp"
+        app:cardBackgroundColor="?colorBackgroundFloating"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent">
@@ -25,21 +27,24 @@
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
-                android:text="@string/id" />
+                android:text="@string/id"
+                android:textColor="?colorPrimaryInverse" />
 
             <TextView
                 android:id="@+id/hiring_list_list_id"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
-                android:text="@string/listId" />
+                android:text="@string/listId"
+                android:textColor="?colorPrimaryInverse" />
 
             <TextView
                 android:id="@+id/hiring_list_name"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
-                android:text="@string/name" />
+                android:text="@string/name"
+                android:textColor="?colorPrimaryInverse" />
 
         </LinearLayout>
     </androidx.cardview.widget.CardView>

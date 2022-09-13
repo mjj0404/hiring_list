@@ -2,15 +2,19 @@ package com.fetchreward.hiring
 
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
-
 import com.fetchreward.hiring.model.HiringItem
-import kotlinx.coroutines.*
+import com.fetchreward.hiring.ui.list.HiringListRepository
+import kotlinx.coroutines.CoroutineScope
+import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.launch
+import kotlinx.coroutines.withContext
 
 
 class HiringListViewModel() : ViewModel() {
 
     val hiringItemList = MutableLiveData<List<HiringItem>>()
     val hiringItemListFailed = MutableLiveData<Boolean>()
+    private var ready: Boolean = false
 
     private val repository: HiringListRepository = HiringListRepository()
 
@@ -21,12 +25,17 @@ class HiringListViewModel() : ViewModel() {
                 if (list.isNotEmpty()) {
                     hiringItemListFailed.value = false
                     hiringItemList.postValue(list)
+                    ready = true
                 }
                 else {
                     onError()
                 }
             }
         }
+    }
+
+    fun isReady(): Boolean {
+        return ready
     }
 
     private fun onError() {
