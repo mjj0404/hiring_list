@@ -4,6 +4,7 @@ Fetch dummy hiring list received from FetchRewards to RecyclerView
 
 
 # Structure
+'''
 app<br/>
 ├── api<br/>
 │   └── RetrofitService<br/>
@@ -22,7 +23,7 @@ app<br/>
 │       ├── HiringListApplication<br/>
 │       └── PreferenceManager<br/>
 └── MainActivity<br/>
-
+'''
 # Components/Additional Libraries used
  '''
 implementation 'com.squareup.retrofit2:converter-gson:2.9.0'
