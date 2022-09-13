@@ -1,4 +1,4 @@
-package com.fetchreward.hiring
+package com.fetchreward.hiring.ui.list
 
 import com.fetchreward.hiring.api.RetrofitService
 import com.fetchreward.hiring.model.HiringItem

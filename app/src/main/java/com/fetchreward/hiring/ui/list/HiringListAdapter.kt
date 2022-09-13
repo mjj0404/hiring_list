@@ -1,8 +1,9 @@
-package com.fetchreward.hiring
+package com.fetchreward.hiring.ui.list
 
 import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
+import com.fetchreward.hiring.R
 import com.fetchreward.hiring.databinding.ItemHiringBinding
 import com.fetchreward.hiring.model.HiringItem
 

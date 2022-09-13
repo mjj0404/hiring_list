@@ -1,4 +1,4 @@
-package com.fetchreward.hiring
+package com.fetchreward.hiring.ui.list
 
 import android.os.Bundle
 import android.view.*
@@ -8,8 +8,11 @@ import androidx.core.view.MenuProvider
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.ViewModelProvider
 import androidx.recyclerview.widget.LinearLayoutManager
+import com.fetchreward.hiring.HiringListViewModel
+import com.fetchreward.hiring.R
 import com.fetchreward.hiring.databinding.FragmentMainBinding
 import com.fetchreward.hiring.model.HiringItem
+import com.fetchreward.hiring.ui.setting.ThemeSelectionFragment
 
 class HiringListFragment : Fragment() {
 
@@ -27,7 +30,7 @@ class HiringListFragment : Fragment() {
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?): View {
         _binding = FragmentMainBinding.inflate(inflater, container, false);
-        viewModel = ViewModelProvider(this).get(HiringListViewModel::class.java)
+        viewModel = ViewModelProvider(this)[HiringListViewModel::class.java]
         return binding.root
     }
 
@@ -49,6 +52,7 @@ class HiringListFragment : Fragment() {
 
         binding.hiringListRecyclerview.layoutManager = LinearLayoutManager(requireContext())
         binding.hiringListRecyclerview.adapter = adapter
+
 
         viewModel.hiringItemList.observe(viewLifecycleOwner) {
             adapter.setHiringList(it)
@@ -84,6 +88,11 @@ class HiringListFragment : Fragment() {
             }
 
             override fun onMenuItemSelected(menuItem: MenuItem): Boolean {
+                if (menuItem.itemId == R.id.menu_item_theme) {
+                    requireActivity().supportFragmentManager.beginTransaction()
+                        .replace(R.id.container, ThemeSelectionFragment.newInstance())
+                        .commitNow()
+                }
                 return false
             }
         })

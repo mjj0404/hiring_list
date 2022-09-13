@@ -9,4 +9,10 @@
         app:actionViewClass="android.widget.SearchView"
         app:showAsAction="always" />
 
+    <item
+        android:id="@+id/menu_item_theme"
+        android:icon="@drawable/ic_select_theme"
+        android:title="@string/theme"
+        app:showAsAction="always" />
+
 </menu>
