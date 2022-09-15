@@ -35,4 +35,8 @@ implementation 'androidx.navigation:navigation-ui-ktx:2.5.2'
 ```
 ## Additional features
 SearchView and text query filter in Adapter class</br>
-Icons and Themes
+Icons and Themes</br>
+Detect Network Availability</br>
+
+## Demo
+https://user-images.githubusercontent.com/31434297/190342270-f8cc0b5f-f095-4b00-a287-ccba90eeeaf0.mp4
