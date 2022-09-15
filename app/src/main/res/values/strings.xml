@@ -10,6 +10,8 @@
     <string name="name">Name : %1$s</string>
     <string name="onClickToast">ID : %1$s, List ID : %2$s, Name : %3$s</string>
     <string name="on_error_list">Error : \u0020</string>
+    <string name="on_error_list_not_received">There was a problem receiving the hiring list.
+        Please check your internet connection and try again.</string>
 
     <!--    MENU ITEM     -->
     <string name="search">Search</string>
@@ -20,7 +22,5 @@
     <string name="theme_default">System Default</string>
     <string name="theme_light">Light</string>
     <string name="theme_dark">Dark</string>
-
-
 
 </resources>
