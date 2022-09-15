@@ -7,6 +7,10 @@ import com.fetchreward.hiring.R
 import com.fetchreward.hiring.databinding.ItemHiringBinding
 import com.fetchreward.hiring.model.HiringItem
 
+/**
+ * Two lists used, one to keep original list of HiringItem,
+ * the other is used to present the filtered list of the original
+ */
 class HiringListAdapter(private val clickedItem: (HiringItem) -> Unit):
     RecyclerView.Adapter<HiringListAdapter.HiringViewHolder>() {
 
@@ -32,11 +36,16 @@ class HiringListAdapter(private val clickedItem: (HiringItem) -> Unit):
         notifyDataSetChanged()
     }
 
+    /**
+     * The function receives search query, in String format
+     * and apply filters to the original list, and store it to the 'filteredHiringList'
+     * @param text : search query from SearchView
+     */
     fun setSearchFilter(text: String) {
-        if (!text.isNullOrBlank())
-            filteredHiringList = hiringList.filter { it.name.contains(text) }
+        filteredHiringList = if (!text.isNullOrBlank())
+            hiringList.filter { it.name.contains(text) }
         else
-            filteredHiringList = hiringList
+            hiringList
         notifyDataSetChanged()
     }
 

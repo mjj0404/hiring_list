@@ -12,6 +12,9 @@ import androidx.navigation.ui.setupActionBarWithNavController
 import com.fetchreward.hiring.databinding.ActivityMainBinding
 import com.fetchreward.hiring.ui.list.HiringListFragment
 
+/**
+ * @author Min Jae Jeong 9/13/2022
+ */
 class MainActivity : AppCompatActivity() {
 
     private lateinit var binding: ActivityMainBinding

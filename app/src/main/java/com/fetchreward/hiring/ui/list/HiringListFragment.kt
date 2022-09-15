@@ -1,8 +1,6 @@
 package com.fetchreward.hiring.ui.list
 
 import android.os.Bundle
-import android.os.SystemClock
-import android.util.Log
 import android.view.*
 import android.widget.SearchView
 import android.widget.Toast
@@ -21,6 +19,11 @@ class HiringListFragment : Fragment() {
 
     private lateinit var viewModel: HiringListViewModel
 
+    /**
+     * The val is used throughout the fragment just to make sure when the themeMenuItem is clicked,
+     * it gets processed only once as sometimes, single click event fires multiple clicks of the
+     * themeMenuItem, even after the themeMenuItem view is disappeared, thus causing NPE
+     */
     private lateinit var themeMenuItem: MenuItem
 
     override fun onCreateView(
@@ -50,17 +53,20 @@ class HiringListFragment : Fragment() {
         binding.hiringListRecyclerview.layoutManager = LinearLayoutManager(requireContext())
         binding.hiringListRecyclerview.adapter = adapter
 
-
         viewModel.hiringItemList.observe(viewLifecycleOwner) {
             adapter.setHiringList(it)
         }
+
+        // setting visibility of the list depending on the hiringItemListFailed value
         viewModel.hiringItemListFailed.observe(viewLifecycleOwner) {
-            // TODO: set Loading
             if (it) {
-                // TODO
+                binding.hiringListRecyclerview.visibility = View.GONE
+                binding.hiringListErrorTextview.visibility = View.VISIBLE
+
             }
             else {
-                // TODO
+                binding.hiringListRecyclerview.visibility = View.VISIBLE
+                binding.hiringListErrorTextview.visibility = View.GONE
             }
         }
         viewModel.fetchItems()
@@ -87,8 +93,9 @@ class HiringListFragment : Fragment() {
             }
 
             override fun onMenuItemSelected(menuItem: MenuItem): Boolean {
-                Log.d("TAG", "onMenuItemSelected: " + SystemClock.currentThreadTimeMillis())
                 themeMenuItem.isEnabled = true
+
+                // Notice themeMenuItem is dynamically disabled to prevent multiple click events.
                 if (menuItem.itemId == R.id.menu_item_theme && themeMenuItem.isEnabled) {
                     themeMenuItem.isEnabled = false
                     val action = HiringListFragmentDirections.actionNavFragmentMainToNavFragmentSetting()
